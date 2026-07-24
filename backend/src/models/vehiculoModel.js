@@ -63,7 +63,7 @@ const eliminarVehiculo = async (placa, cliente_id) => {
     RETURNING *
   `;
   const result = await pool.query(query, [placa, cliente_id]);
-  return result.rows[0]; // Retorna el vehículo borrado o undefined si no existía/no le pertenecía
+  return result.rows[0]; 
 };
 
 

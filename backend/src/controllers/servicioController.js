@@ -113,7 +113,6 @@ const cambiarEstado = async (req, res) => {
   }
 };
 
-// 3. CONTROLADOR PARA OBTENER SERVICIOS (INTELIGENTE POR ROL)
 const obtenerServicios = async (req, res) => {
   const { rol, id } = req.user; 
 

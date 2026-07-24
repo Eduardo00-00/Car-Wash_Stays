@@ -1,9 +1,8 @@
 const vehiculoModel = require('../models/vehiculoModel');
 
-// 1. Registrar Vehículo (Ahora lee el cliente_id desde el TOKEN)
 const registrarVehiculo = async (req, res) => {
   const { placa, marca, modelo, color, tipo_id } = req.body;
-  const cliente_id = req.user.id; // ¡Seguridad: ID extraído del token!
+  const cliente_id = req.user.id; 
 
   if (!placa || !marca || !modelo || !tipo_id) {
     return res.status(400).json({ message: 'Faltan campos obligatorios.' });
@@ -23,9 +22,8 @@ const registrarVehiculo = async (req, res) => {
   }
 };
 
-// 2. Obtener vehículos (Ahora lee el cliente_id desde el TOKEN)
 const obtenerVehiculosCliente = async (req, res) => {
-  const cliente_id = req.user.id; // ¡Seguridad: solo ve lo suyo!
+  const cliente_id = req.user.id; 
 
   try {
     const listaVehiculos = await vehiculoModel.buscarPorClienteId(cliente_id);
@@ -35,7 +33,6 @@ const obtenerVehiculosCliente = async (req, res) => {
   }
 };
 
-// 3. Tipos (Sigue igual, es público)
 const obtenerTodosLosTipos = async (req, res) => {
   try {
     const tipos = await vehiculoModel.obtenerTiposVehiculo();

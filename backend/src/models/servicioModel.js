@@ -38,7 +38,6 @@ const actualizarEstadoServicio = async (id, nuevoEstado) => {
   return result.rows[0];
 };
 
-// --- NUEVAS FUNCIONES PARA EL GET INTELIGENTE ---
 
 const obtenerServiciosPorCliente = async (cliente_id) => {
   const query = `

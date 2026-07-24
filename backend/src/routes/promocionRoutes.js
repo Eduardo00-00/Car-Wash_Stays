@@ -6,6 +6,6 @@ const verificarRol = require('../middleware/roleMiddleware');
 // Rutas
 router.post('/registrar', verificarToken, verificarRol(['admin']), promoController.registrarPromo);
 router.post('/validar', verificarToken, verificarRol(['cliente']), promoController.validarPromo);
-router.get('/', verificarToken, verificarRol(['admin', 'cliente']), promoController.obtenerTodasLasPromos);
+router.get('/obtener', verificarToken, verificarRol(['admin', 'cliente']), promoController.obtenerTodasLasPromos);
 
 module.exports = router;

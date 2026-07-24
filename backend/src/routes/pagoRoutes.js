@@ -1,11 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const pagoController = require('../controllers/pagoController');
+const verificarToken = require('../middleware/authMiddleware');
+const verificarRol = require('../middleware/roleMiddleware');
 
-// Ruta para efectuar el pago de una lavada
-router.post('/registrar', pagoController.procesarPago);
+// Registrar pago (Admin, Lavador y Cliente pueden registrar)
+router.post('/registrar', 
+  verificarToken, 
+  verificarRol(['admin', 'lavador', 'cliente']), 
+  pagoController.procesarPago
+);
 
-// Ruta para consultar los pagos de un servicio específico
-router.get('/servicio/:servicio_id', pagoController.listarPagosServicio);
+// Consultar el historial de pagos de un servicio especifico
+router.get('/servicio/:servicio_id', 
+  verificarToken, 
+  verificarRol(['admin', 'lavador', 'cliente']), 
+  pagoController.listarPagosServicio
+);
 
 module.exports = router;

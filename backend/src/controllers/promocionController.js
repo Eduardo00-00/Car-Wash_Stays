@@ -1,7 +1,6 @@
 const promocionModel = require('../models/promocionModel');
 
 const registrarPromo = async (req, res) => {
-  // Ajustado: quitamos 'nombre'
   const { codigo, porcentaje_descuento, fecha_inicio, fecha_fin } = req.body;
   try {
     const nuevaPromo = await promocionModel.crearPromocion(codigo, porcentaje_descuento, fecha_inicio, fecha_fin);

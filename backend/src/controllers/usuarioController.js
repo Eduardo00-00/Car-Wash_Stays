@@ -13,7 +13,6 @@ const login = async (req, res) => {
       return res.status(401).json({ message: 'Credenciales incorrectas.' });
     }
 
-    // Generar Token
     const token = jwt.sign(
       { id: usuario.id, rol: usuario.rol }, 
       process.env.JWT_SECRET,
@@ -44,7 +43,6 @@ const registrar = async (req, res) => {
 
 const obtenerPerfil = async (req, res) => {
   try {
-    // Ya no usamos req.params.id, lo sacamos del Token que viene en el middleware
     const usuario = await usuarioModel.buscarPorId(req.user.id);
     if (!usuario) return res.status(404).json({ message: 'No encontrado.' });
     res.json({ data: usuario });

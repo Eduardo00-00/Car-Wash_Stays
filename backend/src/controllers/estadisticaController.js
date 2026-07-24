@@ -1,6 +1,5 @@
 const estadisticaModel = require('../models/estadisticaModel');
 
-// Controlador para el Administrador / Dueño
 const verReporteGlobal = async (req, res) => {
   try {
     const reporte = await estadisticaModel.obtenerMetricasAutolavado();
@@ -10,16 +9,12 @@ const verReporteGlobal = async (req, res) => {
   }
 };
 
-// Controlador para el perfil del Cliente
 const verReporteCliente = async (req, res) => {
-  // Obtenemos el ID del cliente logueado desde el token
   const clienteLogueadoId = req.user.id;
   const rol = req.user.rol;
   
-  // El ID que viene en la URL (parámetro)
   const { id } = req.params; 
 
-  // SEGURIDAD: Si no es admin, solo puede ver sus propios datos
   if (rol !== 'admin' && parseInt(id) !== clienteLogueadoId) {
     return res.status(403).json({ message: "No tienes permiso para ver estadísticas ajenas." });
   }
